@@ -39,29 +39,9 @@ function App() {
     }
   };
 
-  // return (
-  //   <div>
-  //     <h1>To-Do List</h1>
-  //     <form onSubmit={handleCreate}>
-  //       <input
-  //         type="text"
-  //         value={newTodo}
-  //         onChange={(event) => setNewTodo(event.target.value)}
-  //         placeholder="Enter new to-do"
-  //       />
-  //       <button type="submit">Create</button>
-  //     </form>
-  //     <button onClick={fetchTodos}>Fetch All To-Dos</button>
-  //     <ul>
-  //       {todos.map((todo) => (
-  //         <li key={todo._id}>
-  //           {todo.todo}
-  //           <button onClick={() => handleDelete(todo._id)}>Delete</button>
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   </div>
-  // );
+  function NoDataPlaceholder() {
+    return <li>No data available</li>;
+  }
 
   return (
     <div className="container">
@@ -77,13 +57,16 @@ function App() {
         <button type="submit" className="create-btn">Create</button>
       </form>
       <button onClick={fetchTodos} className="fetch-btn">Fetch All To-Dos</button>
+      
       <ul className="todo-list">
-        {todos.map((todo) => (
+        {todos.length === 0 ? <NoDataPlaceholder /> : (
+        todos.map((todo) => (
           <li key={todo._id}>
             {todo.todo}
             <button onClick={() => handleDelete(todo._id)} className="delete-btn">Delete</button>
           </li>
-        ))}
+        ))
+        )}
       </ul>
     </div>
   );
