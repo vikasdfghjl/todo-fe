@@ -51,23 +51,26 @@ function App() {
           type="text"
           value={newTodo}
           onChange={(event) => setNewTodo(event.target.value)}
-          placeholder="Enter new to-do"
+          placeholder="Enter a task here !!!"
           className="input-field"
         />
         <button type="submit" className="create-btn">Create</button>
       </form>
       <button onClick={fetchTodos} className="fetch-btn">Fetch All To-Dos</button>
-      
-      <ul className="todo-list">
-        {todos.length === 0 ? <NoDataPlaceholder /> : (
-        todos.map((todo) => (
-          <li key={todo._id}>
-            {todo.todo}
-            <button onClick={() => handleDelete(todo._id)} className="delete-btn">Delete</button>
-          </li>
-        ))
-        )}
-      </ul>
+      <div className="todo-list-container">
+        <ul className="todo-list">
+          {todos.length === 0 ? <NoDataPlaceholder /> : (
+            todos.map((todo) => (
+              
+              <li key={todo._id}>
+                {todo.todo}
+                <button onClick={() => handleDelete(todo._id)} className="delete-btn">Delete</button>
+              </li>
+              
+            ))
+          )}
+        </ul>
+      </div>
     </div>
   );
 }
